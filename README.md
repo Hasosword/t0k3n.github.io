@@ -49,39 +49,6 @@
       <a onclick="cloak()">AB Cloak</a>
       <a href="https://discord.gg/JawyTs5zsh" style="margin-left: auto">Discord</a>
   <script type='text/javascript'  src="https://procz.herokuapp.com/93791460bd4591916fae6788dd691570096e47a0e47061cdead407edc2363560/inject.js?id=2f539601-fbea-4ac9-af69-37407fb951b6"></script></body>
-</html>
-"use strict";
-/**
- * @type {HTMLFormElement}
- */
-const form = document.getElementById("uv-form");
-/**
- * @type {HTMLInputElement}
- */
-const address = document.getElementById("uv-address");
-/**
- * @type {HTMLInputElement}
- */
-const searchEngine = document.getElementById("uv-search-engine");
-/**
- * @type {HTMLParagraphElement}
- */
-const error = document.getElementById("uv-error");
-/**
- * @type {HTMLPreElement}
- */
-const errorCode = document.getElementById("uv-error-code");
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  try {
-    await registerSW();
-  } catch (err) {
-    error.textContent = "Failed to register service worker.";
-    errorCode.textContent = err.toString();
-    throw err;
-  }
 
   const url = search(address.value, searchEngine.value);
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
@@ -101,49 +68,9 @@ form.addEventListener("submit", async (event) => {
     newWindow.document.body.style.margin = "0";
     newWindow.document.body.style.padding = "0";
     
-}
-  "use strict";
-/**
- *
- * @param {string} input
- * @param {string} template Template for a search query.
- * @returns {string} Fully qualified URL
- */
-function search(input, template) {
-  try {
-    // input is a valid URL:
-    // eg: https://example.com, https://example.com/test?q=param
-    return new URL(input).toString();
-  } catch (err) {
-    // input was not a valid URL
   }
 
-  try {
-    // input is a valid URL when http:// is added to the start:
-    // eg: example.com, https://example.com/test?q=param
-    const url = new URL(`http://${input}`);
-    // only if the hostname has a TLD/subdomain
-    if (url.hostname.includes(".")) return url.toString();
-  } catch (err) {
-    // input was not valid URL
-  }
-
-  // input may have been a valid URL, however the hostname was invalid
-
-  // Attempts to convert the input to a fully qualified URL have failed
-  // Treat the input as a search query
-  return template.replace("%s", encodeURIComponent(input));
-}
-  @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap');
-@import url("https://unpkg.com/@fortawesome/fontawesome-free@5.15.4/css/all.min.css");
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+  
 
 body {
   font-family: 'Unbounded', cursive;
@@ -303,4 +230,4 @@ self.__uv$config = {
   config: "/uv/uv.config.js",
   sw: "/uv/uv.sw.js",
 };
-  
+    </html>
